@@ -10,8 +10,8 @@ function facotryCreatedObject (name, value) {
   }
 }
 
-let factory = facotryCreatedObject('dani', 27)
-factory.greet()
+let factoryFunction = facotryCreatedObject('dani', 27)
+factoryFunction.greet()
 
 function ConstructorFunction (name, value) {
   ;(this.nameOfObject = name),
@@ -23,5 +23,19 @@ function ConstructorFunction (name, value) {
     })
 }
 
-let constructedFunction = new ConstructorFunction('moshe', 23);
-constructedFunction.greet();
+let constructedFunction = new ConstructorFunction('moshe', 23)
+constructedFunction.greet()
+
+function equalObjects (firstParameter, secondParameter) {
+  
+  return (firstParameter == secondParameter) 
+}
+
+function sameObjects (firstParameter, secondParameter) {
+  return (firstParameter === secondParameter) 
+}
+
+let equalityObjects =  equalObjects(factoryFunction, constructedFunction);
+let sameObjectsLet = sameObjects(factoryFunction, constructedFunction)
+console.log(equalityObjects);
+console.log(sameObjectsLet);
