@@ -4,6 +4,4 @@ let priceArray = [
     price2: 6,
     price3: 7
   }
-
-
 ]
