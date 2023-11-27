@@ -1,15 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LikeComponent = void 0;
-var LikeComponent = /** @class */ (function () {
-    function LikeComponent(likesCount, isSelected) {
-        this.likesCount = likesCount;
-        this.isSelected = isSelected;
+class LikeComponent {
+    constructor(_likesCount, _isSelected) {
+        this._likesCount = _likesCount;
+        this._isSelected = _isSelected;
     }
-    LikeComponent.prototype.onClick = function () {
-        this.likesCount += this.isSelected ? -1 : +1;
-        this.isSelected = !this.isSelected;
-    };
-    return LikeComponent;
-}());
+    onClick() {
+        this._likesCount += this._isSelected ? -1 : +1;
+        this._isSelected = !this._isSelected;
+    }
+    get isSelected() {
+        return this._isSelected;
+    }
+    get likesCount() {
+        return this._likesCount;
+    }
+}
 exports.LikeComponent = LikeComponent;
