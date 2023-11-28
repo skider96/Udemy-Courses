@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CoursesService } from './courses.service';
 
 @Component({
@@ -21,8 +21,8 @@ import { CoursesService } from './courses.service';
         <td [attr.colspan]="colSpan"></td>
       </tr>
     </table>
-    <input (keyup.enter)="onKeyUp()"/>
-
+    <!-- <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()"/> -->
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUp()"/>
     <!-- <img [src]="imageUrl" /> -->
   `,
 })
@@ -36,10 +36,11 @@ export class CoursesComponent {
   colSpan = 2;
   courses;
   isActive = false;
+  email = "name@domain.com";
 onDivClicked(){
   console.log("Div was clicked");
 }
-onKeyUp(){ console.log("ENTER WAS PRESSED");
+onKeyUp(){ console.log(this.email);
 }
   onSave($event: any) {
     $event.stopPropagation();
