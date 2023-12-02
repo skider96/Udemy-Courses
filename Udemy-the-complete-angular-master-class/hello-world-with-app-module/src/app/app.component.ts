@@ -1,3 +1,4 @@
+import { CoursesComponent } from './courses.component';
 import { Component,  } from '@angular/core';
 
 @Component({
@@ -6,6 +7,9 @@ import { Component,  } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+doWeHaveAnyCourses(): any {
+return this.courses.length > 0;
+}
   isFavorite: boolean = false;
   title = 'hello-world-with-app-module';
   post = {
@@ -15,5 +19,5 @@ export class AppComponent {
   onStarCLick(){
     console.log('Star clicked!');
   }
-
+  courses = [1];
 }

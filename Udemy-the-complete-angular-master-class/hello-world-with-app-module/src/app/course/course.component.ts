@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 
 })
 export class CourseComponent {
-
+courses = [1 ,2];
 }

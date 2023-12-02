@@ -7,3 +7,7 @@
   <ng-container class="heading">My Panel</ng-container>
   <div class="body"><p>This is the content of my panel.</p></div>
 </bootstrap-panel>
+
+<div *ngIf="courses.length == 0; else hasCourses then coursesList">No courses yet</div>
+<ng-template #coursesList>Courses list </ng-template>
+<ng-template #hasCourses>List of courses</ng-template>
