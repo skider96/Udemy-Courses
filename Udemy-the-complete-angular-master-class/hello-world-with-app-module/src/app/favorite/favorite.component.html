@@ -1,1 +1,11 @@
-<span class="star" [class.active]="isFavorite" (click)="toggleStar()">&#9733;</span>
+<span class="star" [class.active]="isFavorite" 
+(click)="toggleStar()">&#9733;</span>
+<!-- 
+<span
+  class="glyphicon"
+  [ngClass]="{
+    'glyphicon-star': isFavorite,
+    'glyphicon-star-empty': !isFavorite
+  }"
+  (click)="toggleStar()"
+></span> -->
