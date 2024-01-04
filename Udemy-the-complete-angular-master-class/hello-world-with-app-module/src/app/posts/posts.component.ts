@@ -1,62 +1,85 @@
+// posts.component.ts
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AppError } from '../app-errror';
 
 @Component({
   selector: 'posts',
   templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css',
+  styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  posts: any[];
+  posts: any[] = [];
+
   constructor(private service: PostService) {}
+
+  ngOnInit() {
+    this.service.getAll().subscribe(
+      (posts) => {
+        this.posts = posts;
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+        if (error instanceof AppError) {
+          // Handle specific app errors
+        } else {
+          // Handle other errors
+        }
+      }
+    );
+  }
 
   createPost(input: HTMLInputElement) {
     let post: any = { title: input.value };
     input.value = '';
-    this.service.createPosts(post).subscribe(
+
+    this.service.create(post).subscribe(
       (response: any) => {
         post.id = response.id;
         this.posts.splice(0, 0, post);
-        console.log(response);
       },
-      (error) => alert('Cannot create post')
+      (error) => {
+        console.error(error);
+        if (error instanceof AppError) {
+          // Handle specific app errors
+        } else {
+          // Handle other errors
+        }
+      }
     );
   }
+
   updatePost(post: any) {
-    this.service.updatePosts(post).subscribe(
+    this.service.update(post).subscribe(
       (response: any) => {
         console.log(response);
       },
-      (error) => alert('Error updating')
+      (error) => {
+        console.error(error);
+        if (error instanceof AppError) {
+          // Handle specific app errors
+        } else {
+          // Handle other errors
+        }
+      }
     );
   }
 
   deletePost(post: any) {
-    this.service.deletePosts(3232) // post.id
-      .subscribe(
-        (response: any) => {
-          let index = this.posts.indexOf(post);
-          this.posts.splice(index, 1);
-        },
-        // (error: Response) => {
-        //   if (error.status === 404) {
-        //     alert('Error deleting post');}
-        //  else {
-        //   alert('common error');
-        (error: HttpErrorResponse) => {
-          if (error.status === 404) {
-            alert('Post not found. Cannot delete.');
-          } else {
-            throw error;
-          }
+    this.service.delete(post.id).subscribe(
+      (response: any) => {
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+        if (error instanceof AppError) {
+          // Handle specific app errors
+        } else {
+          // Handle other errors
         }
-      );
-  }
-  ngOnInit() {
-    this.service.getPosts().subscribe((response) => {
-      console.log(response);
-      this.posts = response;
-    });
+      }
+    );
   }
 }
