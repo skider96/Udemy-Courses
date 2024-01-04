@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'posts',
@@ -32,29 +33,30 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post: any) {
-    this.service.deletePosts(post.id)
-    .subscribe(
-      (response: any) => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
-      },
-      (error: Response) => {
-        if (error.status === 404) {
-          alert('Error deleting post');}
-       else { 
-        alert('common error');
-      }
-  });
+    this.service.deletePosts(3232) // post.id
+      .subscribe(
+        (response: any) => {
+          let index = this.posts.indexOf(post);
+          this.posts.splice(index, 1);
+        },
+        // (error: Response) => {
+        //   if (error.status === 404) {
+        //     alert('Error deleting post');}
+        //  else {
+        //   alert('common error');
+        (error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            alert('Post not found. Cannot delete.');
+          } else {
+            throw error;
+          }
+        }
+      );
   }
   ngOnInit() {
-    this.service.getPosts().subscribe(
-      (response) => {
-        console.log(response);
-        this.posts = response;
-      },
-      (error) => {
-        alert('Unexpected error');
-      }
-    );
+    this.service.getPosts().subscribe((response) => {
+      console.log(response);
+      this.posts = response;
+    });
   }
 }
