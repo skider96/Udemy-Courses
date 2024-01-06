@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppError } from '../app-errror';
 import { BadInput } from '../bad-input';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,8 @@ export abstract class DataService {
   }
 
   delete(id: any) {
+    
+    
     return this.httpClient.delete(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }

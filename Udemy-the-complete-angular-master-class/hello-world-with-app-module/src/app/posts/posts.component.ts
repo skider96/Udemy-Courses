@@ -33,15 +33,16 @@ export class PostsComponent implements OnInit {
   createPost(input: HTMLInputElement) {
     let post: any = { title: input.value };
     input.value = '';
-
+    this.posts.splice(0, 0, post);
     this.service.create(post).subscribe(
       (response: any) => {
         post.id = response.id;
-        this.posts.splice(0, 0, post);
+       
       },
       (error) => {
         console.error(error);
         if (error instanceof AppError) {
+          this.posts.splice(0,1 )
           // Handle specific app errors
         } else {
           // Handle other errors
@@ -67,13 +68,13 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post: any) {
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
     this.service.delete(post.id).subscribe(
-      (response: any) => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
-      },
+     null,
       (error: HttpErrorResponse) => {
         console.error(error);
+        this.posts.splice(index,0,post)
         if (error instanceof AppError) {
           // Handle specific app errors
         } else {
