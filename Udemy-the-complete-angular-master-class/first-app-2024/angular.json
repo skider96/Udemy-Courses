@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "basics-assignment-1-start": {
+    "basics-assignment-2-start": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/basics-assignment-1-start",
+            "outputPath": "dist/basics-assignment-2-start",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "basics-assignment-1-start:build:production"
+              "buildTarget": "basics-assignment-2-start:build:production"
             },
             "development": {
-              "buildTarget": "basics-assignment-1-start:build:development"
+              "buildTarget": "basics-assignment-2-start:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "basics-assignment-1-start:build"
+            "buildTarget": "basics-assignment-2-start:build"
           }
         },
         "test": {
