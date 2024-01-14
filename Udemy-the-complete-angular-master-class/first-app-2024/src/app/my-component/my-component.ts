@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
 @Component({
 selector: 'my-component',
 template: `<p>This is {{ myVariable}}</p>
-<input [(ngModel)]="myVariable" /> 
+
 <button class="button" (click)="onClick()" > submit</button>
 <p>{{username}}</p>
 `,  // templateUrl: 'my-component.html',
