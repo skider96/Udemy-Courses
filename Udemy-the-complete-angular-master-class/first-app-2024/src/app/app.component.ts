@@ -13,6 +13,8 @@ clickCounter = [];
 
  problem = false;
 
+ 
+
   onClickTest() {
  this.onClick = true;
  const timestamp = new Date().toLocaleTimeString();
